@@ -1,5 +1,5 @@
 -------
--- Datos dummy modelo relacional n3 mini spotify
+-- Datos dummy modelo relacional n3 mini music platform
 -------
 
 
@@ -27,7 +27,8 @@ INSERT INTO `spotify`.`artistas_relacionados` (`id_artista`, `id_artista_relacio
     (1, 4),
     (1, 6),
     (8, 2),
-    (8, 9);
+    (8, 9),
+    (3, 1);
 
 
 -------
@@ -108,7 +109,7 @@ INSERT INTO `spotify`.`paypal` (`id_paypal`, `nombre_usuario`) VALUES
 -------
 -- Usuarios premium
 -------
-INSERT INTO `spotify`.`usuarios_premium` (`id_usuario`, `fk_tarjeta`, `fk_paypal`) VALUES 
+INSERT INTO `spotify`.`usuarios_premium` (`id_usuario`, `id_tarjeta`, `id_paypal`) VALUES 
 	(1, 1, 1),
 	(2, 2, 2),
 	(3, 3, NULL),
@@ -121,27 +122,27 @@ INSERT INTO `spotify`.`usuarios_premium` (`id_usuario`, `fk_tarjeta`, `fk_paypal
 -------
 -- Suscripciones
 -------
-INSERT INTO `spotify`.`suscripciones` (`id_suscripción`, `fecha_inicio`, `fecha_renovación`) VALUES 
-	(1, '2022-01-01', '2022-02-01'),
-	(2, '2022-02-15', '2022-03-15'),
-	(3, '2022-03-31', '2022-04-30'),
-	(4, '2022-06-15', '2022-07-15'),
-	(5, '2022-03-07', '2022-04-08'),
-	(6, '2022-08-12', '2022-09-13'),
-	(7, '2022-04-26', '2022-05-27');
+INSERT INTO `spotify`.`suscripciones` (`id_suscripción`, `fecha_inicio`, `fecha_renovación`, `método_pago`, `id_usuario`) VALUES 
+	(1, '2022-01-01', '2022-02-01', 'paypal', 3),
+	(2, '2022-02-15', '2022-03-15', 'paypal', 4),
+	(3, '2022-03-31', '2022-04-30', 'tarjeta_credito', 1),
+	(4, '2022-06-15', '2022-07-15', 'paypal', 2),
+	(5, '2022-03-07', '2022-04-08', 'tarjeta_credito', 2),
+	(6, '2022-08-12', '2022-09-13', 'paypal', 3),
+	(7, '2022-04-26', '2022-05-27', 'paypal', 5);
 
 
 -------
 -- Pagos
 -------
 INSERT INTO `spotify`.`pagos` (`número_orden`, `fecha`, `id_usuario`, `id_suscripción`, `total`) VALUES 
-	(1, '2022-01-01', 1, 1, 6.50),
-	(2, '2022-02-15', 2, 2, 6.50),
-	(3, '2022-03-31', 3, 3, 6.50),
-	(4, '2022-06-15', 4, 4, 6.50),
-	(5, '2022-03-07', 5, 5, 6.50),
-	(6, '2022-08-12', 6, 6, 6.50),
-	(7, '2022-04-26', 7, 7, 6.50);
+	(1, '2022-01-01', 1, 3, 6.50),
+	(2, '2022-02-15', 4, 2, 6.50),
+	(3, '2022-03-31', 3, 1, 6.50),
+	(4, '2022-06-15', 2, 4, 6.50),
+	(5, '2022-03-07', 2, 5, 6.50),
+	(6, '2022-08-12', 3, 6, 6.50),
+	(7, '2022-04-26', 5, 7, 6.50);
 
 
 -------
